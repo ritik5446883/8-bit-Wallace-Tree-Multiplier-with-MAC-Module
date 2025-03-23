@@ -1,6 +1,9 @@
 # 8-bit-Wallace-Tree-Multiplier-with-MAC-Module
 ## Implementation of an 8-bit Wallace Tree Multiplier and a Multiply-and-Accumulate (MAC) module using 45nm CMOS technology in Cadence Virtuoso.
 
+
+This repository contains the implementation of an **8-bit Wallace Tree Multiplier** and a **Multiply-and-Accumulate (MAC) module** using **45nm CMOS technology** in **Cadence Virtuoso**.
+
 ## Features
 
 - **8-bit Wallace Tree Multiplier**:  
@@ -20,13 +23,13 @@ The project aims to provide a high-speed and energy-efficient implementation of 
 
 ## Topology selection for different circuit elements
 
-I have used $45~nm$ CMOS technology to implement the primitive gates. Additionally, used CMOS as well as transmission based logic to based design ciruits as explained below. 
+We have used $45~nm$ CMOS technology to implement the primitive gates. Additionally, we have used CMOS as well as transmission based logic to based design our ciruits as explained below. 
 
 - **NAND, NOR and NOT gates**
 The primitive gates like NAND, NOR and NOT are designed using standard CMOS logic with NMOS and PMOS transistors. CMOS gates offer full rail-to-rail output, high noise margin and low power consumption. Hence, they are preferred for the design of these primitive gates.
 
 - **XOR gate and 2:1 Multiplexer**
-The XOR gate and 2:1 MUX are designed using transmission gates since they require fewer number of transistors as compared to CMOS based logic. Additionally, transmission gates have minimal leakage and static power dissipation during steady states. Hence,I have used transmission based design for XOR and 2:1 MUX.
+The XOR gate and 2:1 MUX are designed using transmission gates since they require fewer number of transistors as compared to CMOS based logic. Additionally, transmission gates have minimal leakage and static power dissipation during steady states. Hence, we have used transmission based design for XOR and 2:1 MUX.
 
 ---
 
@@ -46,7 +49,7 @@ The Partial Product Generator produces the partial product for each bit of the m
 
 ![Partial Product Diagram](./images/partial_product.jpg)
 
-Each block in the Partial Product Generator consists of an array of 8 AND gates, which generate the partial products from $A_i \cdot B_0$ to $A_i \cdot B_7$.I have used 8 such blocks to generate the partial products for all 64 combinations of the input bits.
+Each block in the Partial Product Generator consists of an array of 8 AND gates, which generate the partial products from $A_i \cdot B_0$ to $A_i \cdot B_7$. We have used 8 such blocks to generate the partial products for all 64 combinations of the input bits.
 
 ---
 
@@ -71,7 +74,7 @@ In contrast to a full adder, where both $Sum$ and $C_{out}$ are influenced by $C
 
 ### Implementation
 
-I have implemented the first design of the 4:2 compressor proposed by Priyadharshni et al. [1]. The circuit design minimizes the number of XOR gates to 3, compared to the 4 XOR gates used in traditional compressors. Additionally, 2:1 multiplexers (MUX), constructed using transmission gates, further reduce delay.
+We have implemented the first design of the 4:2 compressor proposed by Priyadharshni et al. [1]. The circuit design minimizes the number of XOR gates to 3, compared to the 4 XOR gates used in traditional compressors. Additionally, 2:1 multiplexers (MUX), constructed using transmission gates, further reduce delay.
 
 ### Circuit Diagram
 
@@ -121,7 +124,7 @@ $$
 
 ## Carry Look-ahead Adder
 
-In the last stage of our Wallace tree multiplier design, I have used three cascaded 4-bit Carry Look-ahead (CLA) adders to form a 12-bit Carry Look-ahead adder. Unlike other adder topologies like the Ripple Carry adder, a Carry Look-ahead adder computes carry signals in parallel using generate and propagate logic, eliminating the delay caused by sequential carry propagation. The expressions for the propagate signal $P_i$ and the generate signal $G_i$ are given in equations below:
+In the last stage of our Wallace tree multiplier design, we use three cascaded 4-bit Carry Look-ahead (CLA) adders to form a 12-bit Carry Look-ahead adder. Unlike other adder topologies like the Ripple Carry adder, a Carry Look-ahead adder computes carry signals in parallel using generate and propagate logic, eliminating the delay caused by sequential carry propagation. The expressions for the propagate signal $P_i$ and the generate signal $G_i$ are given in equations below:
 
 $$
 P_i = A_i \oplus B_i
@@ -148,9 +151,9 @@ The schematic of our Wallace tree multiplier as implemented in $Cadence~Virtuoso
 
 ![Wallace tree schematic](./images/wallace_schematic.jpg)
 
-To perform functional verification of our design, I have implemented a test bench circuit where the Wallace tree multiplier is powered with a $1.1 V$ supply, and all the outputs are connected to $2 fF$ capacitors. The rise/fall time of all the input bits is set to $50 ps$.
+To perform functional verification of our design, we have implemented a test bench circuit where the Wallace tree multiplier is powered with a $1.1 V$ supply, and all the outputs are connected to $2 fF$ capacitors. The rise/fall time of all the input bits is set to $50 ps$.
 
-The waveform for different input combinations and the corresponding outputs are shown in figure. I have verified our outputs for the input combinations.
+The waveform for different input combinations and the corresponding outputs are shown in figure. We have verified our outputs for the input combinations.
 
 ![Wallace tree Functional Verification](./images/wallace_func_ver.jpg) 
 
@@ -169,7 +172,7 @@ The maximum propagation delay of our Wallace tree multiplier arises from the out
 
 ### Energy Analysis
 
-Using our worst-case input pair having $A = 157$ and $B = 156$,I have calculated the maximum energy consumption for our design, which comes out to be around **$609.038~fJ$**, as verified from below graph.
+Using our worst-case input pair having $A = 157$ and $B = 156$, we calculate the maximum energy consumption for our design, which comes out to be around **$609.038~fJ$**, as verified from below graph.
 
 ![Worst Case Delay](./images/worst_case_energy.jpg)
 
@@ -180,13 +183,13 @@ The layout of the Wallace tree multiplier circuit is shown below. The total area
 
 ![Layout of Wallace Tree Multiplier](./images/wallace_layout.jpg)
 
- The layout has successfully passed DRC and LVS checks. After designing the layout, I have performed parasitic extraction for energy and latency analysis.
+Our layout has successfully passed DRC and LVS checks. After designing the layout, we perform parasitic extraction for energy and latency analysis.
 
 ---
 
 ## Summary of Results for Wallace Tree Multiplier
 
-A summary of Energy-Delay-Area analysis is shown in Table 1.
+A summary of our Energy-Delay-Area analysis is shown in Table 1.
 
 | **Area** ($\mu m^2$) | **Delay** ($ns$) | **Energy** ($fJ$) |
 |----------------------|----------------|-----------------|
@@ -196,7 +199,7 @@ A summary of Energy-Delay-Area analysis is shown in Table 1.
 
 ### Variation of Energy and Delay with Power Supply
 
-By varying the supply voltage from $1 V$ to $1.2 V$, I have calculated the values of Energy, Delay, and Energy-Delay Product (EDP) as depicted in Table 2. From this table, we can see that EDP is minimum at $1.2~V$.
+By varying the supply voltage from $1 V$ to $1.2 V$, we have calculated the values of Energy, Delay, and Energy-Delay Product (EDP) as depicted in Table 2. From this table, we can see that EDP is minimum at $1.2~V$.
 
 
 | **Supply Voltage** ($V$) | **Energy** ($fJ$) | **Delay** ($ns$) | **EDP** ($ns × fJ$) |
@@ -215,7 +218,7 @@ By varying the supply voltage from $1 V$ to $1.2 V$, I have calculated the value
 
 A Multiply and Accumulate module (MAC) multiplies two numbers and adds the product to an accumulator. It consists of a multiplier, an adder, and an accumulator. The MAC unit is a fundamental block in computing devices, especially Digital Signal Processors (DSP) [4].
 
- I have implemented a MAC module using Wallace tree multiplier, a 16-bit Carry Look-ahead adder, and a 17-bit Parallel Input Parallel Output (PIPO) shift register which works as an accumulator. The schematic of our MAC unit is shown below.
+We have implemented a MAC module using our Wallace tree multiplier, a 16-bit Carry Look-ahead adder, and a 17-bit Parallel Input Parallel Output (PIPO) shift register which works as an accumulator. The schematic of our MAC unit is shown below.
 
 ![Schematic of MAC Unit](./images/mac_schematic.jpg)
 
@@ -223,7 +226,7 @@ A Multiply and Accumulate module (MAC) multiplies two numbers and adds the produ
 
 ## Accumulator
 
-I have designed the accumulator unit using a 17-bit Parallel Input Parallel Output (PIPO) shift register. The accumulator stores the output from the CLA adder (which includes 16 output bits and 1 carry bit) and sends it back to the CLA in the next clock cycle so that the new output from the multiplier can be added to the value present in the accumulator. The accumulator can also be set to 0 asynchronously using a $Reset$ pin.
+We have designed the accumulator unit using a 17-bit Parallel Input Parallel Output (PIPO) shift register. The accumulator stores the output from the CLA adder (which includes 16 output bits and 1 carry bit) and sends it back to the CLA in the next clock cycle so that the new output from the multiplier can be added to the value present in the accumulator. The accumulator can also be set to 0 asynchronously using a $Reset$ pin.
 
 The value of each bit in the accumulator is stored using a D Flip-Flop. The schematic for the D Flip-Flop is adapted from [6] and is shown in below figure.
 
@@ -286,7 +289,7 @@ The simulation results for the MAC module are summarized in Table 3.
 
 # Conclusion
 
-successfully demonstrated the implementation of an 8-bit Wallace tree multiplier and a corresponding Multiply and Accumulate (MAC) module. The Wallace tree multiplier efficiently performs multiplication by reducing partial products through hierarchical stages of half adders, full adders, and 4:2 compressors, followed by a final Carry Look-ahead Adder (CLA) to produce the result. 
+We have successfully demonstrated the implementation of an 8-bit Wallace tree multiplier and a corresponding Multiply and Accumulate (MAC) module. The Wallace tree multiplier efficiently performs multiplication by reducing partial products through hierarchical stages of half adders, full adders, and 4:2 compressors, followed by a final Carry Look-ahead Adder (CLA) to produce the result. 
 
 The MAC module combines this multiplier with an accumulator to enable repeated multiply-and-accumulate operations. The functionality of the designs was rigorously verified for various input combinations. Key implementation metrics, including area, worst-case delay, and energy consumption, were obtained to evaluate performance and efficiency.
 
@@ -294,7 +297,7 @@ The MAC module combines this multiplier with an accumulator to enable repeated m
 
 # Report
 
-For a detailed explanation and documentation of the implementation, please refer to the [Project Report PDF](./Project_Report_EEE559.pdf).
+For a detailed explanation and documentation of the implementation, please refer to the [Project Report PDF](./Project_Report/Project_Report_Final.pdf).
 
 
 ---
@@ -311,3 +314,6 @@ For a detailed explanation and documentation of the implementation, please refer
 
 5. Kumar, Maroju Sai, D Ashok Kumar, and P Samundiswary. "Design and performance analysis of Multiply-Accumulate (MAC) unit." *2014 International Conference on Circuits, Power and Computing Technologies [ICCPCT-2014]*, IEEE, 2014, pp. 1084–1089. [IEEE Xplore](https://ieeexplore.ieee.org/document/7026864).
 
+6. Sung, Guo-Ming, Chong-Cheng Huang, Xiong Xiao, and Shih-Ying Hsu. "10-Bit 5 MS/s Successive Approximation Register Analog-to-Digital Converter with a Phase-Locked Loop and Modified Bootstrapped Switch for a BLDC Motor Drive." *Electronics*, vol. 11, no. 4, 2022, p. 624. [MDPI](https://www.mdpi.com/2079-9292/11/4/624).
+
+---
